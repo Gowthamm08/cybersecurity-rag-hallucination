@@ -183,20 +183,32 @@ RETRIEVED EVIDENCE:
 CLAIMS:
 {"".join(claims_context)}
 
+
 VERDICT RULES:
 
-1. SUPPORTED: Evidence directly establishes the claim.
-2. CONTRADICTED: Evidence directly conflicts with the claim.
-3. INSUFFICIENT: Evidence neither establishes nor contradicts the claim.
-4. Missing information is not contradiction.
-5. Semantic similarity alone is not proof.
-6. Do not use external knowledge.
-7. Never invent evidence identifiers.
-8. Every claim must receive exactly one verdict.
-9. Evaluate each claim independently.
-10. Every SUPPORTED verdict must include at least one valid supporting evidence ID.
-11. Every CONTRADICTED verdict must include at least one valid contradicting evidence ID.
-12. Do not classify a claim as SUPPORTED merely because no contradiction exists.
+1. SUPPORTED: The supplied evidence directly establishes the claim.
+
+2. CONTRADICTED: The supplied evidence directly establishes that the claim is false or that the opposite occurred.
+
+3. INSUFFICIENT: The supplied evidence does not establish whether the claim is true or false.
+
+4. CRITICAL DISTINCTION:
+   - Missing evidence is NOT contradiction.
+   - Lack of proof is NOT proof that an event did not happen.
+   - "No LSASS access evidence is present" does not prove that credentials were not stolen.
+   - "Credential dumping was not detected" does not automatically prove that credential dumping did not occur.
+
+5. If a claim asserts an event occurred but the evidence contains no artifact proving it, use INSUFFICIENT unless the evidence explicitly establishes the event did not occur.
+
+6. If a claim asserts that the evidence confirms or proves an event, but the evidence explicitly states that it does not prove that event, use CONTRADICTED.
+
+7. Do not use external knowledge. Evaluate every claim independently.
+
+8. Every SUPPORTED verdict must include at least one valid supporting evidence ID.
+
+9. Every CONTRADICTED verdict must include at least one valid contradicting evidence ID.
+
+10. Never invent evidence identifiers.
 
 Return ONLY valid JSON in this format:
 
