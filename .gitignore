@@ -1,0 +1,33 @@
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE and editor files
+.vscode/
+
+# Raw datasets
+data/raw/
+
+# Generated data and evaluation outputs
+data/processed/
+data/evaluation/
+
+# Vector database and generated indexes
+vector_store/chromadb/
+vector_store/*.index
+vector_store/chunk_metadata.jsonl
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
